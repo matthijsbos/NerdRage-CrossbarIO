@@ -10,8 +10,10 @@ ENV PYTHONUNBUFFERED 1
 # install dependencies and Crossbar.io
 RUN    apt-get update \
     && apt-get install -y --no-install-recommends \
-               python \
-               python-pip \
+               python3 \
+               python3-dev \
+               python3-pip \
+               python3-setuptools \
                ca-certificates \
                expat \
                build-essential \
@@ -21,15 +23,14 @@ RUN    apt-get update \
                libsnappy-dev \
                libbz2-dev \
     # install Crossbar.io from PyPI. rgd pip: https://github.com/pypa/pip/issues/6158 and https://github.com/pypa/pip/issues/6197
-    && pip install --no-cache-dir --upgrade "pip<19" \
-    && pip install --no-cache-dir crossbar \
+    && python3 -m pip install --upgrade pip \
+    && pip3 install --no-cache-dir crossbar \
     # minimize image
-    # && apt-get remove -y build-essential \
     && rm -rf ~/.cache \
     && rm -rf /var/lib/apt/lists/*
 
 # install manually, as environment markers don't work when installing crossbar from pypi
-RUN pip install --no-cache-dir "wsaccel>=0.6.2" "vmprof>=0.4.12"
+RUN pip3 install --no-cache-dir "wsaccel>=0.6.2" "vmprof>=0.4.12"
 
 # test if everything installed properly
 RUN crossbar version
