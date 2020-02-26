@@ -24,7 +24,7 @@ RUN    apt-get update \
                libbz2-dev \
     # install Crossbar.io from PyPI. rgd pip: https://github.com/pypa/pip/issues/6158 and https://github.com/pypa/pip/issues/6197
     && python3 -m pip install --upgrade pip \
-    && pip3 install --no-cache-dir crossbar \
+    && pip3 install --no-cache-dir --verbose crossbar \
     # minimize image
     && rm -rf ~/.cache \
     && rm -rf /var/lib/apt/lists/*
