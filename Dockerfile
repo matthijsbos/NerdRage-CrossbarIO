@@ -1,4 +1,4 @@
-FROM debian:buster
+FROM matthijsbos/nerdrage-base
 
 # Copied from https://raw.githubusercontent.com/crossbario/crossbar/master/docker/armhf/Dockerfile.cpy3
 
@@ -8,12 +8,13 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV PYTHONUNBUFFERED 1
 
 # install dependencies and Crossbar.io
-RUN    apt-get update \
+RUN apt-get update \
     && apt-get install -y --no-install-recommends \
                python3 \
                python3-dev \
                python3-pip \
                python3-setuptools \
+               python3-cryptography \
                ca-certificates \
                expat \
                build-essential \
