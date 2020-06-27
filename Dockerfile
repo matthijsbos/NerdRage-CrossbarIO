@@ -15,6 +15,7 @@ RUN apt-get update \
                python3-pip \
                python3-setuptools \
                python3-cryptography \
+               python3-nacl \
                ca-certificates \
                expat \
                build-essential \
